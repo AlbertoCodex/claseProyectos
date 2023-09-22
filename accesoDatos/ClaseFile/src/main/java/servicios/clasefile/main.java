@@ -119,7 +119,10 @@ public class main {
                             if (line.charAt(i) == texto.charAt(k)) {
                                 palabra += line.charAt(i);
                                 k++;
-                            } 
+                            } else {
+                                palabra = "";
+                                k = 0;
+                            }
                             if (palabra.compareTo(texto) == 0) {
                                 System.out.println(line + " - linea " + contLine + " posicion " 
                                         + (contChar-palabra.length()+1));
