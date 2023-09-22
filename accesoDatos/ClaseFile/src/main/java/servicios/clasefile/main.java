@@ -13,26 +13,25 @@ import java.util.Scanner;
  */
 public class main {
     public static void main(String[] args){
-        Scanner Scanner = new Scanner(System.in);
-        System.out.println("Introduce el nombre del archivo");
-        String fichero = Scanner.nextLine();
-        File f = new File(fichero);
-        
-        if (f.exists() == true) {
-            if(f.isFile() == true) {
-                System.out.println("Existe y es un fichero");
+        for (String s : args) {
+            String fichero = s;
+            File f = new File(fichero);
+
+            if (f.exists() == true) {
+                if(f.isFile() == true) {
+                    System.out.println("Existe y es un fichero");
+                } else {
+                    System.out.println("Existe y es un directorio");
+                    menuDirectorio(f);
+                }
             } else {
-                System.out.println("Existe y es un directorio");
-                menuDirectorio(f);
+                System.out.println("No se encuentra el fichero");
             }
-            
-        } else {
-            System.out.println("No se encuentra el fichero");
         }
     }
     
     public static void menuDirectorio (File f) {
-        Scanner Scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         String[] directorio = f.list();
         File[] contenido = f.listFiles();
         int x = 1;
@@ -41,7 +40,7 @@ public class main {
             System.out.println("0 para salir" + '\n' 
                     + "1 para listar contenido" + '\n' 
                     + "2 para listar recursivamente");
-            x = Scanner.nextInt();
+            x = scanner.nextInt();
             
             switch (x) {
                 case 1:
