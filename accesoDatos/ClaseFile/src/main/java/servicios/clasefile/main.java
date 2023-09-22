@@ -4,7 +4,11 @@
  */
 package servicios.clasefile;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -12,14 +16,16 @@ import java.util.Scanner;
  * @author Alberto
  */
 public class main {
-    public static void main(String[] args){
+
+    public static void main(String[] args) throws IOException {
         for (String s : args) {
             String fichero = s;
             File f = new File(fichero);
 
             if (f.exists() == true) {
-                if(f.isFile() == true) {
-                    System.out.println("Existe y es un fichero");
+                if (f.isFile() == true) {
+                    System.out.println("Existe y es un archivo");
+                    menuArchivo(f);
                 } else {
                     System.out.println("Existe y es un directorio");
                     menuDirectorio(f);
@@ -29,23 +35,23 @@ public class main {
             }
         }
     }
-    
-    public static void menuDirectorio (File f) {
+
+    public static void menuDirectorio(File f) {
         Scanner scanner = new Scanner(System.in);
         String[] directorio = f.list();
         File[] contenido = f.listFiles();
         int x = 1;
-        
+
         while (x != 0) {
-            System.out.println("0 para salir" + '\n' 
-                    + "1 para listar contenido" + '\n' 
+            System.out.println("0 para salir" + '\n'
+                    + "1 para listar contenido" + '\n'
                     + "2 para listar recursivamente");
             x = scanner.nextInt();
-            
+
             switch (x) {
                 case 1:
-                    for (int i=0; i < directorio.length; i++) {
-                        System.out.println(directorio[i]);  
+                    for (int i = 0; i < directorio.length; i++) {
+                        System.out.println(directorio[i]);
                     }
                     break;
                 case 2:
@@ -54,35 +60,47 @@ public class main {
             }
         }
     }
-    
+
     // Seguir con la recursividad
     public static void contRec(File[] contenido) {
-        for (int i=0; i < contenido.length; i++) {
+        for (int i = 0; i < contenido.length; i++) {
             if (contenido[i].isFile()) {
                 System.out.println(contenido[i]);
             }
         }
     }
-    
-    public static void menuArchivo (File f) {
+
+    public static void menuArchivo(File f) throws FileNotFoundException, IOException {
         Scanner Scanner = new Scanner(System.in);
-        String[] contenido = f.list();
+        BufferedReader br = new BufferedReader(new FileReader(f));
         int x = 1;
-        
+        String line;
+
         while (x != 0) {
-            System.out.println("0 para salir" + '\n' 
-                    + "1 para listar contenido" + '\n' 
-                    + "2 para listar recursivamente");
+            int j = 0;
+
+            System.out.println("0 para salir" + '\n'
+                    + "1 para listar contenido" + '\n'
+                    + "2 para listar con Index");
             x = Scanner.nextInt();
-            
+
             switch (x) {
                 case 1:
-                    for (int i=0; i < contenido.length; i++) {
-                        System.out.println(contenido[i]);  
+                    while ((line = br.readLine()) != null) {
+                        System.out.println(line);
                     }
-                break;
+                    br.close();
+                    break;
+                case 2:
+                    br = new BufferedReader(new FileReader(f));
+                    while ((line = br.readLine()) != null) {
+                        System.out.println(j + "- " + line);
+                        j++;
+                    }
+                    break;
+                default:
+                    break;
             }
         }
     }
-    
 }
