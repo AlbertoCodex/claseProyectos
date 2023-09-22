@@ -80,22 +80,22 @@ public class main {
         String line;
 
         while (x != 0) {
-            int j = 0;
-
             System.out.println("0 para salir" + '\n'
                     + "1 para listar contenido" + '\n'
                     + "2 para listar con Index" + '\n'
                     + "3 para buscar en el texto");
-            x = Scanner.nextInt();
+            x = Integer.parseInt(Scanner.nextLine());
 
             switch (x) {
                 case 1:
+                    br = new BufferedReader(new FileReader(f));
                     while ((line = br.readLine()) != null) {
                         System.out.println(line);
                     }
                     br.close();
                     break;
                 case 2:
+                    int j = 0;
                     br = new BufferedReader(new FileReader(f));
                     while ((line = br.readLine()) != null) {
                         System.out.println(j + "- " + line);
@@ -104,15 +104,33 @@ public class main {
                     br.close();
                     break;
                 case 3: // Continue (recorrer string, [i])
-                    String texto;
+                    br = new BufferedReader(new FileReader(f));
+                    int contLine = 0;
+                    int contChar = 0;
+                    int k = 0;
+                    String texto = "";
+                    String palabra = "";
+
                     System.out.println("Introduce el texto a buscar");
-                //    texto = Scanner.nextLine();
+                    texto = Scanner.nextLine();
                     while ((line = br.readLine()) != null) {
-                        System.out.println(line);
+                        contLine++;
+                        for (int i = 0; i < line.length(); i++) {
+                            if (line.charAt(i) == texto.charAt(k)) {
+                                palabra += line.charAt(i);
+                                k++;
+                            } 
+                            if (palabra.compareTo(texto) == 0) {
+                                System.out.println(line + " - linea " + contLine + " posicion " 
+                                        + (contChar-palabra.length()+1));
+                                k = 0;
+                                palabra = "";
+                            }
+                            contChar++;
+                        }
+                        contChar = 0;
                     }
                     br.close();
-
-                    
                     break;
                 default:
                     break;
