@@ -49,12 +49,12 @@ public class main {
             x = scanner.nextInt();
 
             switch (x) {
-                case 1:
+                case 1: // Lista contenido del directorio
                     for (int i = 0; i < directorio.length; i++) {
                         System.out.println(directorio[i]);
                     }
                     break;
-                case 2:
+                case 2: // Lista contenido del directorio y subdirectorios
                     contRec(contenido);
                     break;
             }
@@ -83,18 +83,19 @@ public class main {
             System.out.println("0 para salir" + '\n'
                     + "1 para listar contenido" + '\n'
                     + "2 para listar con Index" + '\n'
-                    + "3 para buscar en el texto");
+                    + "3 para buscar en el texto"+ '\n'
+                    + "4 para indexar un archivo");
             x = Integer.parseInt(Scanner.nextLine());
 
             switch (x) {
-                case 1:
+                case 1: // Muestra el contenido del archivo
                     br = new BufferedReader(new FileReader(f));
                     while ((line = br.readLine()) != null) {
                         System.out.println(line);
                     }
                     br.close();
                     break;
-                case 2:
+                case 2: // Muestra el contenido del archivo con index
                     int j = 0;
                     br = new BufferedReader(new FileReader(f));
                     while ((line = br.readLine()) != null) {
@@ -103,7 +104,7 @@ public class main {
                     }
                     br.close();
                     break;
-                case 3: // Continue (recorrer string, [i])
+                case 3: // Busca una cadena en el fichero
                     br = new BufferedReader(new FileReader(f));
                     int contLine = 0;
                     int contChar = 0;
@@ -124,8 +125,9 @@ public class main {
                                 k = 0;
                             }
                             if (palabra.compareTo(texto) == 0) {
-                                System.out.println(line + " - linea " + contLine + " posicion " 
-                                        + (contChar-palabra.length()+1));
+                                System.out.println(line + " - linea " + contLine 
+                                        + " posicion " 
+                                        + (contChar - palabra.length() + 1));
                                 k = 0;
                                 palabra = "";
                             }
@@ -134,6 +136,8 @@ public class main {
                         contChar = 0;
                     }
                     br.close();
+                    break;
+                case 4: // Continue - Append new file
                     break;
                 default:
                     break;
