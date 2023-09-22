@@ -61,7 +61,6 @@ public class main {
         }
     }
 
-    // Seguir con la recursividad
     public static void contRec(File[] contenido) {
         for (int i = 0; i < contenido.length; i++) {
             if (contenido[i].isFile()) {
@@ -85,7 +84,8 @@ public class main {
 
             System.out.println("0 para salir" + '\n'
                     + "1 para listar contenido" + '\n'
-                    + "2 para listar con Index");
+                    + "2 para listar con Index" + '\n'
+                    + "3 para buscar en el texto");
             x = Scanner.nextInt();
 
             switch (x) {
@@ -101,6 +101,18 @@ public class main {
                         System.out.println(j + "- " + line);
                         j++;
                     }
+                    br.close();
+                    break;
+                case 3: // Continue (recorrer string, [i])
+                    String texto;
+                    System.out.println("Introduce el texto a buscar");
+                //    texto = Scanner.nextLine();
+                    while ((line = br.readLine()) != null) {
+                        System.out.println(line);
+                    }
+                    br.close();
+
+                    
                     break;
                 default:
                     break;
