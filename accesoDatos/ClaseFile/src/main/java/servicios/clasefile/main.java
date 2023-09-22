@@ -66,6 +66,10 @@ public class main {
         for (int i = 0; i < contenido.length; i++) {
             if (contenido[i].isFile()) {
                 System.out.println(contenido[i]);
+            } else {
+                System.out.println(contenido[i]);
+                File[] subFolder = contenido[i].listFiles();
+                contRec(subFolder);
             }
         }
     }
