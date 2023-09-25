@@ -5,9 +5,11 @@
 package servicios.clasefile;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -45,7 +47,7 @@ public class main {
         while (x != 0) {
             System.out.println("0 para salir" + '\n'
                     + "1 para listar contenido" + '\n'
-                    + "2 para listar recursivamente");
+                    + "2 para listar el contenido recursivamente");
             x = scanner.nextInt();
 
             switch (x) {
@@ -61,6 +63,7 @@ public class main {
         }
     }
 
+    // Funcion para recursividad listar subdirectorios
     public static void contRec(File[] contenido) {
         for (int i = 0; i < contenido.length; i++) {
             if (contenido[i].isFile()) {
@@ -83,7 +86,7 @@ public class main {
             System.out.println("0 para salir" + '\n'
                     + "1 para listar contenido" + '\n'
                     + "2 para listar con Index" + '\n'
-                    + "3 para buscar en el texto"+ '\n'
+                    + "3 para buscar en el texto" + '\n'
                     + "4 para indexar un archivo");
             x = Integer.parseInt(Scanner.nextLine());
 
@@ -125,8 +128,8 @@ public class main {
                                 k = 0;
                             }
                             if (palabra.compareTo(texto) == 0) {
-                                System.out.println(line + " - linea " + contLine 
-                                        + " posicion " 
+                                System.out.println(line + " - linea " + contLine
+                                        + " posicion "
                                         + (contChar - palabra.length() + 1));
                                 k = 0;
                                 palabra = "";
@@ -137,7 +140,27 @@ public class main {
                     }
                     br.close();
                     break;
-                case 4: // Continue - Append new file
+                case 4: // Añade el texto del fichero dado al original
+                    String fileText = "";
+                    br = new BufferedReader(new FileReader(f));
+                    System.out.println("Introduce el nombre del fichero a anexar");
+                    String file = Scanner.nextLine();
+                    File appendFile = new File(file);
+
+                    while ((line = br.readLine()) != null) {
+                        fileText += line + "\n";
+                    }
+                    br.close();
+
+                    if (appendFile.isFile()) {
+                        FileWriter fw = new FileWriter(f, true);
+                        BufferedWriter bw = new BufferedWriter(fw);
+                        bw.newLine();
+                        bw.write(fileText);
+                        bw.close();
+                    } else {
+                        System.out.println("El fichero no se encuentra o no es un fichero");
+                    }
                     break;
                 default:
                     break;
