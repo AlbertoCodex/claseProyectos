@@ -8,7 +8,7 @@ package servicios.gestionhotel;
  *
  * @author Alberto
  */
-public class GestionHotel {
+public class main {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
