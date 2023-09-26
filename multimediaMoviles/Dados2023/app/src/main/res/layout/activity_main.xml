@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/tvJugadorUno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_label_j1"
+        app:layout_constraintBottom_toTopOf="@id/tvJ1D1"
+        app:layout_constraintEnd_toStartOf="@id/tvJugadorDos"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvJugadorDos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_label_j2"
+        app:layout_constraintBottom_toTopOf="@id/tvJ1D1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvJugadorUno"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvJ1D1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_label_j1d1"
+        app:layout_constraintBottom_toTopOf="@id/tvJ1D2"
+        app:layout_constraintEnd_toStartOf="@id/tvJ2D1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvJugadorUno" />
+
+    <TextView
+        android:id="@+id/tvJ1D2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_label_j1d2"
+        app:layout_constraintBottom_toTopOf="@id/tvResultado"
+        app:layout_constraintEnd_toStartOf="@id/tvJ2D2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvJ1D1"  />
+
+    <TextView
+        android:id="@+id/tvJ2D1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_label_j2d1"
+        app:layout_constraintBottom_toTopOf="@id/tvJ2D2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvJ1D1"
+        app:layout_constraintTop_toBottomOf="@id/tvJugadorDos"  />
+
+    <TextView
+        android:id="@+id/tvJ2D2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_label_j2d2"
+        app:layout_constraintBottom_toTopOf="@id/tvResultado"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvJ1D2"
+        app:layout_constraintTop_toBottomOf="@id/tvJ2D1"  />
+
+    <TextView
+        android:id="@+id/tvResultado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_label_resultado"
+        app:layout_constraintBottom_toTopOf="@id/bPlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvJ1D2"  />
+
+    <Button
+        android:id="@+id/bPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/text_button_play"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvResultado"  />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
