@@ -7,7 +7,7 @@
     <string name="text_label_j1d2">Dado 2</string>
     <string name="text_label_j2d1">Dado 1</string>
     <string name="text_label_j2d2">Dado 2</string>
-    <string name="text_label_resultado">El resultado es:</string>
+    <string name="text_label_resultado">Ha ganado el jugador: </string>
 
 
 </resources>
