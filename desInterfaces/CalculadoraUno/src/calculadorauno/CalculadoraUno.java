@@ -4,17 +4,30 @@
  */
 package calculadorauno;
 
+import java.io.IOException;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 /**
  *
  * @author Alberto
  */
-public class CalculadoraUno {
+public class CalculadoraUno extends Application {
 
-    /**
-     * @param args the command line arguments
-     */
+    @Override
+    public void start(Stage stage) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("Calculadora.fmxl"));
+        Scene scene = new Scene(root);
+        
+        stage.setScene(scene);
+        stage.show();
+    }
+    
     public static void main(String[] args) {
-        // TODO code application logic here
+        launch(args);
     }
     
 }
