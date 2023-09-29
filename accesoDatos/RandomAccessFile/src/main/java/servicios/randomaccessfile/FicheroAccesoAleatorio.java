@@ -60,7 +60,7 @@ public class FicheroAccesoAleatorio {
         nombre = getNombre();
         rac = getRac();
         long posActual = rac.getFilePointer();
-        rac.seek(posActual - posiciones);
+        rac.seek(posActual - posiciones - 1);
     }
     
     public void leer() throws FileNotFoundException, IOException {
