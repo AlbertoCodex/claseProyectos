@@ -5,7 +5,6 @@
 package servicios.randomaccessfile;
 
 import java.io.IOException;
-import java.io.RandomAccessFile;
 
 /**
  *
@@ -15,6 +14,9 @@ public class main {
 
     public static void main(String[] args) throws IOException {
         FicheroAccesoAleatorio fichero = new FicheroAccesoAleatorio("test.txt");
-        fichero.escribir("patata");
+        fichero.ir(2);
+        fichero.leer();
+        fichero.atras(2);
+        fichero.leer();
     }
 }
