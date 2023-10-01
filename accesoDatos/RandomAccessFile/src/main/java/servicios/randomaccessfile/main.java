@@ -14,9 +14,11 @@ public class main {
 
     public static void main(String[] args) throws IOException {
         FicheroAccesoAleatorio fichero = new FicheroAccesoAleatorio("test.txt");
+        fichero.escribir("Esto es un texto de prueba");
         fichero.ir(2);
-        fichero.leer();
+        fichero.adelantar(1);
         fichero.atras(2);
         fichero.leer();
+        fichero.leerlinea();
     }
 }

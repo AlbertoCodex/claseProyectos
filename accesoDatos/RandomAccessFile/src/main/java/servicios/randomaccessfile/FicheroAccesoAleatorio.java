@@ -26,7 +26,7 @@ public class FicheroAccesoAleatorio {
     BufferedReader br = null;
     BufferedWriter bw = null;
     
-    FicheroAccesoAleatorio(String nombre) throws FileNotFoundException, IOException {
+    public FicheroAccesoAleatorio(String nombre) throws FileNotFoundException, IOException {
         fr = new FileReader(nombre);
         fw = new FileWriter(nombre, true);
         br = new BufferedReader(fr);
@@ -35,41 +35,40 @@ public class FicheroAccesoAleatorio {
     }
 
     public void escribir(String texto) throws FileNotFoundException, IOException {
-        nombre = getNombre();
-        fw = getFw();
-        bw = getBw();
         bw.write(texto);
         bw.close();
     }
 
     public void ir (long posicion) throws FileNotFoundException, IOException {
-        nombre = getNombre();
-        rac = getRac();
         rac.seek(posicion);
     }
     
     public void adelantar (long posiciones) throws FileNotFoundException, IOException {
-        nombre = getNombre();
-        rac = getRac();
         long posActual = rac.getFilePointer();
         rac.seek(posActual + posiciones);
     }
     
     public void atras (long posiciones) throws FileNotFoundException, IOException {
-        System.out.println("Funcion atras()");
-        nombre = getNombre();
-        rac = getRac();
         long posActual = rac.getFilePointer();
-        rac.seek(posActual - posiciones - 1);
+        rac.seek(posActual - posiciones);
     }
     
     public void leer() throws FileNotFoundException, IOException {
-        System.out.println("Funcion leer()");
-        nombre = getNombre();
-        rac = getRac();
         int value = rac.read();
         char letra = (char) value;
         System.out.println(letra);
+    }
+    
+    public void leerlinea() throws IOException {
+        String line = br.readLine(); 
+        System.out.println(line);
+    }
+    
+    public void mostrarfichero() throws IOException {
+        String line;
+        while ((line = br.readLine()) != null) {
+            System.out.println(line);
+        }
     }
 
     public String getNombre() {
@@ -119,8 +118,5 @@ public class FicheroAccesoAleatorio {
     public void setRac(RandomAccessFile rac) {
         this.rac = rac;
     }
-    
-    
-    
     
 }
