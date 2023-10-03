@@ -14,6 +14,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    public void jugar() {
+        Partida partida = new Partida();
+        Jugador j1 = new Jugador();
+        Jugador j2 = new Jugador();
+        partida.newPartida(j1, j2);
+    }
+
     public void playGame(View v) {
         int iJ1D1 = (int) (Math.random()*6+1);
         int iJ1D2 = (int) (Math.random()*6+1);
