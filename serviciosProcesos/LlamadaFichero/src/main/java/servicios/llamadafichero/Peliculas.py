@@ -21,9 +21,9 @@ pelicula = { "El resplandor":
         "año":1980,
         "Reparto":[
             {"Nombre":"Jack Nicholson"},
-            {"Nombre":"Shelley Duval"}
-            {"Nombre":"DannyLloyd"}
-            {"Nombre":"Scatman"}
+            {"Nombre":"Shelley Duval"},
+            {"Nombre":"DannyLloyd"},
+            {"Nombre":"Scatman"},
         ]
     }
 }
