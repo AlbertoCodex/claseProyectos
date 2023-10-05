@@ -5,7 +5,7 @@ public class Jugador {
 
     private int iSeis;
     public Jugador() {
-        tirada = getTirada();
+        tirada = new Tirada();
         iSeis = tirada.getiSeis();
     }
     public void tirada() {

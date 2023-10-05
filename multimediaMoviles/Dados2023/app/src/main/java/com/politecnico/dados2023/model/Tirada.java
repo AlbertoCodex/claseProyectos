@@ -6,8 +6,8 @@ public class Tirada {
     private int iSeis;
 
     public Tirada() {
-        d1 = getD1();
-        d2 = getD2();
+        d1 = new Dado();
+        d2 = new Dado();
         iSeis = 0;
     }
     public void tirarDados() {

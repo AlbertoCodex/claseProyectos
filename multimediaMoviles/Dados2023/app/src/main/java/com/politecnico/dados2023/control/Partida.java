@@ -7,8 +7,8 @@ public class Partida {
     Jugador j2;
 
     public Partida() {
-        j1 = getJ1();
-        j2 = getJ2();
+        j1 = new Jugador();
+        j2 = new Jugador();
     }
 
     public void newPartida(Jugador j1, Jugador j2) {
