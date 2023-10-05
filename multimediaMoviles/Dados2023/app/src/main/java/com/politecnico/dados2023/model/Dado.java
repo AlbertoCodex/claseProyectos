@@ -1,4 +1,4 @@
-package com.politecnico.dados2023;
+package com.politecnico.dados2023.model;
 
 public class Dado {
     private int value;

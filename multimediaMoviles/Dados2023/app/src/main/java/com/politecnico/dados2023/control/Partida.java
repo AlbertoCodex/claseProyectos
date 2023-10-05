@@ -1,4 +1,6 @@
-package com.politecnico.dados2023;
+package com.politecnico.dados2023.control;
+
+import com.politecnico.dados2023.model.Jugador;
 
 public class Partida {
     Jugador j1;

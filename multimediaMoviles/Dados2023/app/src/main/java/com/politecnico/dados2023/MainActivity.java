@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.politecnico.dados2023.model.Jugador;
+import com.politecnico.dados2023.control.Partida;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
