@@ -19,7 +19,7 @@ public class CalculadoraUno extends Application {
 
     @Override
     public void start(Stage stage) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("Calculadora.fmxl"));
+        Parent root = FXMLLoader.load(getClass().getResource("uno.fmxl"));
         Scene scene = new Scene(root);
         
         stage.setScene(scene);
