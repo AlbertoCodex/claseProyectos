@@ -12,9 +12,6 @@ import javafx.stage.Stage;
 import model.Articulo;
 import java.io.IOException;
 import java.net.URL;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,9 +21,10 @@ import javafx.collections.ObservableList;
  */
 public class App extends Application {
 
-    private static Scene scene;
+    private Stage escenarioPrincipal;
+    private BorderPane vistaPrincipal;
     private ObservableList datosArticulo = FXCollections.observableArrayList();
-    private AnchorPane vistaArticulo;
+    private AnchorPane vistaArticulos;
     
     // Datos ejemplo -- Continue
 
@@ -39,17 +37,12 @@ public class App extends Application {
         
     }
     
-
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("articulos"), 640, 480);
-        stage.setScene(scene);
-        stage.show();
+        this.escenarioPrincipal = escenarioPrincipal;
+        this.escenarioPrincipal.setTitle("Lista de articulos");
+        initLayoutPrincipal();
         muestraVistaArticulo();
-    }
-
-    static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
@@ -61,19 +54,40 @@ public class App extends Application {
         launch();
     }
     
+    private void initLayoutPrincipal() {
+        FXMLLoader loader = new FXMLLoader();
+        URL location = App.class.getResource("xml/principal.fxml");
+        loader.setLocation(location);
+        try {
+            vistaPrincipal = loader.load();
+        } catch (IOException ex) {
+            
+        }
+        
+        Scene escena = new Scene(vistaPrincipal);
+        escenarioPrincipal.setScene(escena);
+        escenarioPrincipal.show();
+    }
+    
     public void muestraVistaArticulo(){
         FXMLLoader loader = new FXMLLoader();
         URL location = App.class.getResource("fxml/articulos.fxml");
         loader.setLocation(location);
         try {
-            vistaArticulo = loader.load();
+            vistaArticulos = loader.load();
         } catch (IOException ex) {
-            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
+        vistaPrincipal.setCenter(vistaArticulos);
     }
     
     public ObservableList getDatosArticulo() {
         return datosArticulo;
     }
+
+    public Stage getPrimaryStage() {
+        return escenarioPrincipal;
+    }
+    
 
 }
