@@ -63,7 +63,7 @@ public class App extends Application {
     
     public void muestraVistaArticulo(){
         FXMLLoader loader = new FXMLLoader();
-        URL location = App.class.getResource("com.poliecnico.articulos/articulos.fxml");
+        URL location = App.class.getResource("fxml/articulos.fxml");
         loader.setLocation(location);
         try {
             vistaArticulo = loader.load();
