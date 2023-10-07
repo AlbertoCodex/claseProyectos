@@ -4,14 +4,17 @@
 
 package com.politecnico.programasecundario;
 
+import java.util.Scanner;
+
 /**
  *
  * @author alberto
  */
 public class ProgramaSecundario {
     public static void main (String args[] ) {
-        media(); // Ejercicio 1
-        System.exit(0);
+    //    media(); // Ejercicio 1
+    //    randomNotepad(); // Ejercicio 2
+        
         
     }
     public static void media() {        
@@ -21,7 +24,12 @@ public class ProgramaSecundario {
             result += i;
         }
         result = result / n;
-        System.out.println("Ejercicio 1");
         System.out.println("La media de los " + n + " primeros enteros es: " + result);
+    }
+    
+    public static int randomNotepad() {
+        int n = (int) (Math.random()*5+1);
+        System.out.print(n);
+        return n;   
     }
 }
