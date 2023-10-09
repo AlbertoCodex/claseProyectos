@@ -9,3 +9,6 @@
 /serviciosProcesos/LlamadaFichero/target/
 /desInterfaces/Articulos/target/
 /accesoDatos/Agenda/target/
+/serviciosProcesos/RatonHilos/target/
+/serviciosProcesos/SistemaRiegoTimerTask/target/
+/serviciosProcesos/SistemaRiegoExecutor/target/
