@@ -59,6 +59,18 @@ public class Main {
                         Runtime.getRuntime().exec(notepad);
                     }
                     break;
+                case 3:
+                    System.out.println("Ejercicio 3");
+                    cmdArray[1] = "ExecutorMensajes.java";
+                    String executorLines;
+                    proceso = Runtime.getRuntime().exec(cmdArray);
+                    stdInput = new BufferedReader(new InputStreamReader(proceso.getInputStream()));
+                    
+                    checkProcess(proceso, stdInput);
+                    while ((executorLines = stdInput.readLine()) != null) { // Ejercicio 1
+                        System.err.println(executorLines);
+                    }
+                    break;
                 default:
                     break;
             }
