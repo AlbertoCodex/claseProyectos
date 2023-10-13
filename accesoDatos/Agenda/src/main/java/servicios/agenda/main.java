@@ -5,6 +5,7 @@
 package servicios.agenda;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -36,17 +37,15 @@ public class main {
         return texto;
     }
     
-    // Continue -- Llamar leer para el contenido -> escribir fichero nuevo
-    public static void crearCopia(String fichero) throws IOException {
-        String nombre = fichero+"_copia.txt";
-        File f = new File(nombre);
+    public static void crearCopia(File fichero) throws IOException {
+        String copia = fichero.getName().replaceFirst("[.][^.]+$", "")+"_copia.txt";
+        File copiaFile = new File(copia);
+        FileWriter fw = new FileWriter(copia, false);
+        BufferedWriter bw = new BufferedWriter(fw);
         
-        if(f.createNewFile()){ System.out.println(nombre + " ha sido creado");
-        }else System.out.println(nombre + " Ya existe en este directorio");
-        
-       // FileWriter myWriter = new FileWriter(nombre);
-         //   myWriter.write();
-           // myWriter.close();
+        System.out.println("Se ha realizado una copia en " + copia);
+        bw.write(leer(fichero));
+        bw.close();
     }
     
     
@@ -65,15 +64,14 @@ public class main {
             
             switch(x) {
                 case 1:
-                    crearCopia(agendaFichero);
+                    
                     break;
                     
                 case 2:
-                    
+                    crearCopia(f);
                     break;
                     
                 default:
-                    System.out.println("Elige una opcion correcta");
                     break;
             }
         }
