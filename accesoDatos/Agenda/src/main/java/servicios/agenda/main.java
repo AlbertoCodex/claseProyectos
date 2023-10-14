@@ -98,9 +98,8 @@ public class main {
             switch (x) {
                 case 1:
                     bw = new BufferedWriter(fw);
-                    bw.write(agenda.insertar(nombreEjemplo, String.valueOf((int) (Math.random() * 999999999))));
-                    bw.close();
-                    cargarHash(agenda, f);
+                    String newContacto = agenda.insertar(nombreEjemplo, String.valueOf((int) (Math.random() * 999999999)));
+                    bw.write(newContacto);
                     break;
                 case 2:
                     agenda.buscar("Alberto Naranjo,");
@@ -120,8 +119,6 @@ public class main {
                     deleteContact(f, nombreEjemplo);
                     bw.newLine();
                     bw.write(agenda.insertar(nombreEjemplo, numeroModificado));
-                    bw.close();
-                    cargarHash(agenda, f);
                     break;
                 default:
                     break;
@@ -163,7 +160,6 @@ public class main {
             }
             texto += linea + "\n";
         }
-        System.out.println(texto);
         BufferedWriter bw = new BufferedWriter(new FileWriter(f));
         bw.write(texto);
         file.close();
