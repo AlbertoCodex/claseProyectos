@@ -5,8 +5,12 @@
 package com.politecnico.programasecundario;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.Scanner;
 
 /**
@@ -40,7 +44,7 @@ public class Main {
                     stdInput = new BufferedReader(new InputStreamReader(proceso.getInputStream()));
                     
                     checkProcess(proceso, stdInput);
-                    while ((line = stdInput.readLine()) != null) { // Ejercicio 1
+                    while ((line = stdInput.readLine()) != null) { 
                         System.err.println(line);
                     }
                     break;
@@ -54,7 +58,7 @@ public class Main {
                     int n = Integer.parseInt(stdInput.readLine());
                     
                     System.out.println("Se va a ejecutar el Notepad " + n + " veces");
-                    for (int i = 1; i <= n; i++) { // Ejercicio 2
+                    for (int i = 1; i <= n; i++) { 
                         notepad[1] = "new"+i;
                         Runtime.getRuntime().exec(notepad);
                     }
@@ -67,9 +71,40 @@ public class Main {
                     stdInput = new BufferedReader(new InputStreamReader(proceso.getInputStream()));
                     
                     checkProcess(proceso, stdInput);
-                    while ((executorLines = stdInput.readLine()) != null) { // Ejercicio 1
+                    while ((executorLines = stdInput.readLine()) != null) {
                         System.err.println(executorLines);
                     }
+                    break;
+                case 4:
+                    System.out.println("Ejercicio 4");
+                    cmdArray[1] = "LongitudCadena.java";
+                    String str1 = "String 1";
+                    String str2 = "String 2";
+                    FileWriter fw = new FileWriter("cadenas.txt", false);
+                    BufferedWriter stdOutput = new BufferedWriter(fw);
+                    stdOutput.write(str1);
+                    stdOutput.newLine();
+                    stdOutput.write(str2);
+                    stdOutput.close();
+                    proceso = Runtime.getRuntime().exec(cmdArray);
+                    stdInput = new BufferedReader(new InputStreamReader(proceso.getInputStream()));
+
+                    checkProcess(proceso, stdInput);
+                    while ((line = stdInput.readLine()) != null) { 
+                        System.err.println(line);
+                    }
+                    break;
+                case 5:
+                    System.out.println("Ejercicio 5");
+                    String[] notas = {"Notepad.exe", "new"};
+                    proceso = Runtime.getRuntime().exec(notas);
+                    stdInput = new BufferedReader(new InputStreamReader(proceso.getInputStream()));
+                    
+                    System.out.println("Se ha ejecutado un bloc de notas");
+                    checkProcess(proceso, stdInput);
+                    Runtime.getRuntime().exec("taskkill /F /IM <processname>.exe");
+                    proceso.destroy();
+                    System.out.println("Se ha cerrado el bloc de notas");
                     break;
                 default:
                     break;
