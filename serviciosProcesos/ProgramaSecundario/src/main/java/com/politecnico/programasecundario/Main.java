@@ -77,6 +77,7 @@ public class Main {
                     break;
                 case 4:
                     System.out.println("Ejercicio 4");
+                    line = "";
                     cmdArray[1] = "LongitudCadena.java";
                     String str1 = "String 1";
                     String str2 = "String 2";
@@ -106,7 +107,18 @@ public class Main {
                     proceso.destroy();
                     System.out.println("Se ha cerrado el bloc de notas");
                     break;
-                default:
+                case 6:
+                    System.out.println("Ejercicio 6");
+                    line = "";
+                    cmdArray[0] = "python3";
+                    cmdArray[1] = "Jugadores.py";
+                    proceso = Runtime.getRuntime().exec(cmdArray);
+                    stdInput = new BufferedReader(new InputStreamReader(proceso.getInputStream()));
+
+                    checkProcess(proceso, stdInput);
+                    while ((line = stdInput.readLine()) != null) { 
+                        System.err.println(line);
+                    }
                     break;
             }
         }
