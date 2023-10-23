@@ -4,9 +4,6 @@
  */
 package com.politecnico.articulostienda;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import com.politecnico.articulostienda.Articulo;
@@ -64,7 +61,8 @@ public class PrimaryController {
         columnaFabricante.setCellValueFactory(new PropertyValueFactory<>(fabricante));
         columnaCategoria.setCellValueFactory(new PropertyValueFactory<>(categoria));
         
-        
+        tablaDatos.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> mostrarDetallesArticulo((Articulo) newValue));
     }  
     
     public void setApp(App app) {
