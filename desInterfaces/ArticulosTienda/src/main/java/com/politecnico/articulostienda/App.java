@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.net.URL;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
@@ -17,11 +19,18 @@ import javafx.scene.layout.BorderPane;
  * JavaFX App
  */
 public class App extends Application {
-
-    private static Scene scene;
+    
+    private ObservableList datosArticulo = FXCollections.observableArrayList();
     private Stage escenarioPrincipal;
     private BorderPane layoutPrincipal;
     private AnchorPane vistaArticulos;
+    
+    public App() {
+        datosArticulo.add(new Articulo("CodigoTest", "DescipcionTest",
+                "FabricanteTest", "CategoriaTest", 1234));
+    }
+    
+    
     
     @Override
     public void start(Stage escenarioPrincipal) {
@@ -32,7 +41,7 @@ public class App extends Application {
         //Inicializo el layout principal
         initLayoutPrincipal();
         //Muestro la vista persona
-        muestraVistaPersona();
+        muestraVistaArticulo();
     }
     
     public void initLayoutPrincipal(){
@@ -51,8 +60,8 @@ public class App extends Application {
         escenarioPrincipal.show();
     }
     
-    public void muestraVistaPersona(){
-        //Cargo la vista persona a partir de VistaPersona.fxml
+    public void muestraVistaArticulo(){
+        //Cargo la vista persona a partir de primary.fxml
         FXMLLoader loader = new FXMLLoader();
         URL location = App.class.getResource("primary.fxml");
         loader.setLocation(location);
@@ -62,6 +71,10 @@ public class App extends Application {
         }
         //Añado la vista al centro del layoutPrincipal
         layoutPrincipal.setCenter(vistaArticulos);
+        
+        //Doy acceso al controlador VistaPersonaCOntroller a LibretaDirecciones
+        PrimaryController controller = loader.getController();
+        controller.setApp(this);
     }
     
     public Stage getPrimaryStage() {
@@ -73,25 +86,7 @@ public class App extends Application {
         launch(args);
     }
     
-    
-//    @Override
-//    public void start(Stage stage) throws IOException {
-//        scene = new Scene(loadFXML("primary"), 640, 480);
-//        stage.setScene(scene);
-//        stage.show();
-//    }
-//
-//    static void setRoot(String fxml) throws IOException {
-//        scene.setRoot(loadFXML(fxml));
-//    }
-//
-//    private static Parent loadFXML(String fxml) throws IOException {
-//        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-//        return fxmlLoader.load();
-//    }
-//
-//    public static void main(String[] args) {
-//        launch();
-//    }
-
+    public ObservableList getDatosArticulo() {
+        return datosArticulo;
+    }
 }
