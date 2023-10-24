@@ -61,8 +61,8 @@
                   <HBox layoutX="167.0" layoutY="482.0" prefHeight="24.0" prefWidth="195.0" spacing="10.0" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0">
                      <children>
                         <Button fx:id="nuevoArticulo" mnemonicParsing="false" text="Nuevo" />
-                        <Button fx:id="editarArticulo" mnemonicParsing="false" text="Editar" />
-                        <Button fx:id="borrarArticulo" mnemonicParsing="false" text="Borrar" />
+                        <Button fx:id="editarArticulo" mnemonicParsing="false" onAction="#editarPersona" text="Editar" />
+                        <Button fx:id="borrarArticulo" mnemonicParsing="false" onAction="#borrarPersona" text="Borrar" />
                      </children>
                   </HBox>
                </children>

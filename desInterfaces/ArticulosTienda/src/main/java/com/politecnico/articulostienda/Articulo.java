@@ -35,7 +35,7 @@ public class Articulo {
     public String getCodigo() {
         return codigo.get();
     }
-    public void setCiudad(String codigo) {
+    public void setCodigo(String codigo) {
         this.codigo.set(codigo);
     }
     public StringProperty codigoProperty() {

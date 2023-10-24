@@ -7,6 +7,8 @@ package com.politecnico.articulostienda;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import com.politecnico.articulostienda.Articulo;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -89,6 +91,51 @@ public class PrimaryController {
             categoriaLabel.setText("");
             precioLabel.setText("");
         }
-}
+    }
+    //Borro la persona seleccionada cuando el usuario hace clic en el botón de Borrar
+    @FXML
+    private void borrarPersona() {
+        //Capturo el indice seleccionado y borro su item asociado de la tabla
+        int indiceSeleccionado = tablaDatos.getSelectionModel().getSelectedIndex();
+        if (indiceSeleccionado >= 0){
+            //Borro item
+            tablaDatos.getItems().remove(indiceSeleccionado);
+        } else {
+            //Muestro alerta
+            Alert alerta = new Alert(AlertType.WARNING);
+            alerta.setTitle("Atención");
+            alerta.setHeaderText("Persona no seleccionada");
+            alerta.setContentText("Por favor, selecciona una persona de la tabla");
+            alerta.showAndWait();
+        }
+    }
     
+    //Muestro el diálogo editar persona cuando el usuario hace clic en el botón de Crear
+    @FXML
+    private void crearPersona() {
+        Articulo temporal = new Articulo();
+        boolean guardarClicked = app.muestraEditarArticulo(temporal);
+        if (guardarClicked) {
+            app.getDatosArticulo().add(temporal);
+        }
+    }
+    
+    //Muestro el diálogo editar persona cuando el usuario hace clic en el botón de Editar
+    @FXML
+    private void editarPersona() {
+        Articulo seleccionada = (Articulo) tablaDatos.getSelectionModel().getSelectedItem();
+        if (seleccionada != null) {
+            boolean guardarClicked = app.muestraEditarArticulo(seleccionada);
+            if (guardarClicked) {
+                mostrarDetallesArticulo(seleccionada);
+            }
+        } else {
+        //Muestro alerta
+        Alert alerta = new Alert(Alert.AlertType.WARNING);
+        alerta.setTitle("Alerta");
+        alerta.setHeaderText("Persona no seleccionada");
+        alerta.setContentText("Por favor, selecciona una persona");
+        alerta.showAndWait();
+        }
+    }
 }

@@ -14,6 +14,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 
 /**
  * JavaFX App
@@ -24,6 +25,7 @@ public class App extends Application {
     private Stage escenarioPrincipal;
     private BorderPane layoutPrincipal;
     private AnchorPane vistaArticulos;
+    private AnchorPane editarArticulo;
     
     public App() {
         datosArticulo.add(new Articulo("CodigoTest", "DescipcionTest",
@@ -75,6 +77,35 @@ public class App extends Application {
         //Doy acceso al controlador VistaPersonaCOntroller a LibretaDirecciones
         PrimaryController controller = loader.getController();
         controller.setApp(this);
+    }
+    
+    //Vista editarPersona
+    public boolean muestraEditarArticulo(Articulo articulo) {
+        //Cargo la vista persona a partir de VistaPersona.fxml
+        FXMLLoader loader = new FXMLLoader();
+        URL location = App.class.getResource("EditarArticulo.fxml");
+        loader.setLocation(location);
+        try {
+            editarArticulo = loader.load();
+        } catch (IOException ex) {
+            return false;
+        }
+        //Creo el escenario de edición (con modal) y establezco la escena
+        Stage escenarioEdicion = new Stage();
+        escenarioEdicion.setTitle("Editar Articulo");
+        escenarioEdicion.initModality(Modality.WINDOW_MODAL);
+        escenarioEdicion.initOwner(escenarioPrincipal);
+        Scene escena = new Scene(editarArticulo);
+        escenarioEdicion.setScene(escena);
+        
+        //Asigno el escenario de edición y el articulo seleccionado al controlador
+        EditarArticuloController controller = loader.getController();
+        controller.setEscenarioEdicion(escenarioEdicion);
+        controller.setArticulo(articulo);
+        //Muestro el diálogo hasta que el usuario lo cierre
+        escenarioEdicion.showAndWait();
+        //devuelvo el botón pulsado
+        return controller.isGuardarClicked();
     }
     
     public Stage getPrimaryStage() {
