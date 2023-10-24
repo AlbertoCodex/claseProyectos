@@ -61,6 +61,7 @@ public class PrimaryController {
         columnaFabricante.setCellValueFactory(new PropertyValueFactory<>(fabricante));
         columnaCategoria.setCellValueFactory(new PropertyValueFactory<>(categoria));
         
+        mostrarDetallesArticulo(null);
         tablaDatos.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> mostrarDetallesArticulo((Articulo) newValue));
     }  
