@@ -103,7 +103,7 @@ public class Main {
                     
                     System.out.println("Se ha ejecutado un bloc de notas");
                     checkProcess(proceso, stdInput);
-                    Runtime.getRuntime().exec("taskkill /F /IM <processname>.exe");
+                    Runtime.getRuntime().exec("taskkill /F /IM notepad.exe");
                     proceso.destroy();
                     System.out.println("Se ha cerrado el bloc de notas");
                     break;
