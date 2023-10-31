@@ -47,11 +47,18 @@ public class Main {
     }
 
     public static void addPersona(String[] conex) throws SQLException {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introduce el DNI (9 caracteres)");
+        String dni = sc.nextLine();
+        System.out.println("Introduce el nombre");
+        String nombre = sc.nextLine();
+        System.out.println("Introduce el apellido");
+        String apellido = sc.nextLine();
         Connection c = DriverManager.getConnection(conex[0], conex[1], conex[2]);
         // Continue - Cambiar ejemplo por pedir mediante consola los datos
         try (Statement s = c.createStatement()) {
             s.execute("INSERT INTO personas " +
-                    "(DNI, Nombre, Apellidos) VALUES ('12345678A', 'Alberto', 'Naranjo')");
+                    "(DNI, Nombre, Apellidos) VALUES ('" + dni + " ', '" + nombre + "' , ' "+ apellido +"')");
         }
     }
 }
