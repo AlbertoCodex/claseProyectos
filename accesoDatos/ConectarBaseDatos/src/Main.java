@@ -1,7 +1,4 @@
-import java.sql.DriverManager;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Scanner;
 
 public class Main {
@@ -38,8 +35,10 @@ public class Main {
                     addPersona(conex);
                     break;
                 case 2:
+                    listarTabla(conex);
                     break;
                 case 3:
+                    listarTablaReverse(conex);
                     break;
             }
 
@@ -55,10 +54,36 @@ public class Main {
         System.out.println("Introduce el apellido");
         String apellido = sc.nextLine();
         Connection c = DriverManager.getConnection(conex[0], conex[1], conex[2]);
-        // Continue - Cambiar ejemplo por pedir mediante consola los datos
         try (Statement s = c.createStatement()) {
             s.execute("INSERT INTO personas " +
                     "(DNI, Nombre, Apellidos) VALUES ('" + dni + " ', '" + nombre + "' , ' "+ apellido +"')");
         }
+    }
+    public static void listarTabla(String[] conex) throws SQLException {
+        Connection c = DriverManager.getConnection(conex[0], conex[1], conex[2]);
+        Statement s = c.createStatement();
+        ResultSet rs = s.executeQuery("SELECT * FROM bdejer1.personas");
+        while (rs.next()) {
+            String dni = rs.getString(1);
+            String nombre = rs.getString(2);
+            String apellido = rs.getString(3);
+            System.out.println(dni + ", " + nombre + ", " + apellido);
+        }
+        s.close();
+        c.close();
+    }
+    public static void listarTablaReverse(String[] conex) throws SQLException {
+        Connection c = DriverManager.getConnection(conex[0], conex[1], conex[2]);
+        Statement s = c.createStatement();
+        // El campo DNI en mi tabla es mayuscula, si en la del profesor es minuscula puede fallar
+        ResultSet rs = s.executeQuery("SELECT * FROM bdejer1.personas ORDER BY DNI DESC");
+        while (rs.next()) {
+            String dni = rs.getString(1);
+            String nombre = rs.getString(2);
+            String apellido = rs.getString(3);
+            System.out.println(dni + ", " + nombre + ", " + apellido);
+        }
+        s.close();
+        c.close();
     }
 }
