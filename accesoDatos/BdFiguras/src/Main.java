@@ -34,10 +34,10 @@ public class Main {
                     addRectangulo(conex);
                     break;
                 case 2:
-                    areaRec(conex);
+                    areaRecF(conex);
                     break;
                 case 3:
-
+                    perimetroRec(conex);
                     break;
             }
 
@@ -62,6 +62,30 @@ public class Main {
         int codigo = 3;
         Connection c = DriverManager.getConnection(conex[0], conex[1], conex[2]);
         try (CallableStatement cs = c.prepareCall("{?=call areaRec(?)}")) {
+            cs.setInt(2,codigo);
+            cs.registerOutParameter(1, Types.INTEGER);
+            cs.execute();
+            int res = cs.getInt(1);
+            System.out.println(res);
+        }
+    }
+
+    public static void perimetroRec(String[] conex) throws SQLException {
+        int codigo = 3;
+        Connection c = DriverManager.getConnection(conex[0], conex[1], conex[2]);
+        try (CallableStatement cs = c.prepareCall("{?=call perimetroRec(?)}")) {
+            cs.setInt(2,codigo);
+            cs.registerOutParameter(1, Types.INTEGER);
+            cs.execute();
+            int res = cs.getInt(1);
+            System.out.println(res);
+        }
+    }
+
+    public static void areaRecF(String[] conex) throws SQLException {
+        int codigo = 3;
+        Connection c = DriverManager.getConnection(conex[0], conex[1], conex[2]);
+        try (CallableStatement cs = c.prepareCall("{?=call perimetroRecF(?)}")) {
             cs.setInt(2,codigo);
             cs.registerOutParameter(1, Types.INTEGER);
             cs.execute();
