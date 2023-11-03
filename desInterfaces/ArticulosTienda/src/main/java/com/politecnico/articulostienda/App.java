@@ -30,6 +30,8 @@ public class App extends Application {
     public App() {
         datosArticulo.add(new Articulo("CodigoTest", "DescipcionTest",
                 "FabricanteTest", "CategoriaTest", 1234));
+        datosArticulo.add(new Articulo("CodigoTest", "DescipcionTest",
+                "FabricanteTest", "CategoriaTest", 1234));
     }
     
     
