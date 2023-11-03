@@ -1,7 +1,4 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Scanner;
 
 public class Main {
@@ -28,8 +25,8 @@ public class Main {
         int x = -1;
         while (x != 0) {
             System.out.println("1- Introducir 10 rectangulos");
-            System.out.println("2- Listar el contenido de la tabla");
-            System.out.println("3- Listar el contenido al revés");
+            System.out.println("2- Calcular area de un rectangulo");
+            System.out.println("3- Calcular perimetro de un rectangulo");
             System.out.println("0- Salir");
             x = sc.nextInt();
             switch (x){
@@ -37,7 +34,7 @@ public class Main {
                     addRectangulo(conex);
                     break;
                 case 2:
-
+                    areaRec(conex);
                     break;
                 case 3:
 
@@ -58,6 +55,18 @@ public class Main {
                 s.execute("INSERT INTO rectangulos " +
                         "(codigo, base, altura) VALUES ('" + codigo + " ', '" + base + "' , ' " + altura + "')");
             }
+        }
+    }
+
+    public static void areaRec(String[] conex) throws SQLException {
+        int codigo = 3;
+        Connection c = DriverManager.getConnection(conex[0], conex[1], conex[2]);
+        try (CallableStatement cs = c.prepareCall("{?=call areaRec(?)}")) {
+            cs.setInt(2,codigo);
+            cs.registerOutParameter(1, Types.INTEGER);
+            cs.execute();
+            int res = cs.getInt(1);
+            System.out.println(res);
         }
     }
 }
