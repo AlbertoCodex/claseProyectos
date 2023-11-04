@@ -22,6 +22,7 @@ public class Main {
 
     public static void menu(String[] conex) throws SQLException {
         Scanner sc = new Scanner(System.in);
+        int codigo;
         int x = -1;
         while (x != 0) {
             System.out.println("1- Introducir 10 rectangulos");
@@ -34,10 +35,18 @@ public class Main {
                     addRectangulo(conex);
                     break;
                 case 2:
-                    areaRecF(conex);
+                    System.out.println("¿Cual rectangulo quieres utilizar? (0-9)");
+                    codigo = sc.nextInt();
+                    baRec(conex, codigo);
+                    areaRecF(conex, codigo);
+                    areaRec(conex, codigo);
                     break;
                 case 3:
-                    perimetroRec(conex);
+                    System.out.println("¿Cual rectangulo quieres utilizar? (0-9)");
+                    codigo = sc.nextInt();
+                    baRec(conex, codigo);
+                    perimetroRec(conex, codigo);
+                    perimetroRecF(conex, codigo);
                     break;
             }
 
@@ -58,39 +67,67 @@ public class Main {
         }
     }
 
-    public static void areaRec(String[] conex) throws SQLException {
-        int codigo = 3;
+    // Llamada del procedimiento
+    public static void areaRec(String[] conex, int codigo) throws SQLException {
         Connection c = DriverManager.getConnection(conex[0], conex[1], conex[2]);
         try (CallableStatement cs = c.prepareCall("{?=call areaRec(?)}")) {
             cs.setInt(2,codigo);
             cs.registerOutParameter(1, Types.INTEGER);
             cs.execute();
             int res = cs.getInt(1);
+            System.out.println("Utilizando llamada al procedimiento");
             System.out.println(res);
         }
     }
-
-    public static void perimetroRec(String[] conex) throws SQLException {
-        int codigo = 3;
+// Llamada del procedimiento
+    public static void perimetroRec(String[] conex, int codigo) throws SQLException {
         Connection c = DriverManager.getConnection(conex[0], conex[1], conex[2]);
         try (CallableStatement cs = c.prepareCall("{?=call perimetroRec(?)}")) {
             cs.setInt(2,codigo);
             cs.registerOutParameter(1, Types.INTEGER);
             cs.execute();
             int res = cs.getInt(1);
+            System.out.println("Utilizando llamada al procedimiento");
             System.out.println(res);
         }
     }
 
-    public static void areaRecF(String[] conex) throws SQLException {
-        int codigo = 3;
+    // Llamada de la funcion
+    public static void areaRecF(String[] conex, int codigo) throws SQLException {
+        Connection c = DriverManager.getConnection(conex[0], conex[1], conex[2]);
+        try (CallableStatement cs = c.prepareCall("{?=call areaRecF(?)}")) {
+            cs.setInt(2,codigo);
+            cs.registerOutParameter(1, Types.INTEGER);
+            cs.execute();
+            int res = cs.getInt(1);
+            System.out.println("Utilizando llamada a la funcion");
+            System.out.println(res);
+        }
+    }
+    // Llamada del procedimiento
+    public static void perimetroRecF(String[] conex, int codigo) throws SQLException {
         Connection c = DriverManager.getConnection(conex[0], conex[1], conex[2]);
         try (CallableStatement cs = c.prepareCall("{?=call perimetroRecF(?)}")) {
             cs.setInt(2,codigo);
             cs.registerOutParameter(1, Types.INTEGER);
             cs.execute();
             int res = cs.getInt(1);
+            System.out.println("Utilizando llamada a la funcion");
             System.out.println(res);
+        }
+    }
+
+    public static void baRec(String[] conex, int codigo) throws SQLException {
+        int base = 0, altura = 0;
+        Connection c = DriverManager.getConnection(conex[0], conex[1], conex[2]);
+        try (Statement s = c.createStatement()) {
+            ResultSet rs = s.executeQuery("SELECT base, altura FROM rectangulos " +
+                    "WHERE codigo="+codigo);
+            while (rs.next()) {
+                base = rs.getInt(1);
+                altura = rs.getInt(2);
+            }
+            System.out.println("La base es: "+ base + " y la altura es: "+ altura);
         }
     }
 }
