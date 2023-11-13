@@ -25,22 +25,17 @@ public class RatonHilos implements Runnable {
     }
     
     public static void main(String[] args) {
-        RatonHilos fievel = new RatonHilos("Fievel", 4);
-        new Thread(fievel).start();
-        new Thread(fievel).start();
-        new Thread(fievel).start();
-        new Thread(fievel).start();
+        RatonHilos fievel = new RatonHilos("Fievel", 0);
+        for (int i=0; i < 10; i++){
+            new Thread(fievel).start();
+        }
     }
 
     public void comer() {
         System.out.printf("el raton %s ha comenzdo a alimentarse%n", nombre);
-        try {
-            Thread.sleep(tiempoAlimentacion * 1000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+
         alimentoConsumido++;
-        System.out.printf("El raton %s ha terminado de alimentarse", nombre);
+        System.out.printf("El raton %s ha terminado de alimentarse%n", nombre);
         System.out.printf("Alimento consumido: %d%n", alimentoConsumido);
         }
     }
