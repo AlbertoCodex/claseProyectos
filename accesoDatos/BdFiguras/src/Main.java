@@ -79,7 +79,7 @@ public class Main {
             System.out.println(res);
         }
     }
-// Llamada del procedimiento
+    // Llamada del procedimiento
     public static void perimetroRec(String[] conex, int codigo) throws SQLException {
         Connection c = DriverManager.getConnection(conex[0], conex[1], conex[2]);
         try (CallableStatement cs = c.prepareCall("{?=call perimetroRec(?)}")) {
@@ -104,7 +104,7 @@ public class Main {
             System.out.println(res);
         }
     }
-    // Llamada del procedimiento
+    // Llamada de la funcion
     public static void perimetroRecF(String[] conex, int codigo) throws SQLException {
         Connection c = DriverManager.getConnection(conex[0], conex[1], conex[2]);
         try (CallableStatement cs = c.prepareCall("{?=call perimetroRecF(?)}")) {
